@@ -71,13 +71,26 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
  // Where's the "add" method? Stay tuned for next unit where we discover where it is and why we can do this action.
         for(int i = 0; i < board.length; i++){
             for(int j = 0; j<board.length; j++){
-                if(j%2 == 0){
-                    board[i][j] =  new Square(this, true, i, j);
-                    this.add(board[i][j]);
+                if(i%2 == 0){
+                    if(j%2 == 0){
+                        board[i][j] =  new Square(this, true, i, j);
+                        this.add(board[i][j]);
+                    }
+                    else{
+                        board[i][j] =  new Square(this, false, i, j);
+                        this.add(board[i][j]);
+                    }
                 }
                 else{
-                    board[i][j] =  new Square(this, false, i, j);
-                    this.add(board[i][j]);
+                    if(j%2 != 0){
+                        board[i][j] =  new Square(this, true, i, j);
+                        this.add(board[i][j]);
+                    }
+                    else{
+                        board[i][j] =  new Square(this, false, i, j);
+                        this.add(board[i][j]);
+                    }
+
                 }
             }
         }
@@ -102,6 +115,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
     void initializePieces() {
     	
     	// board[0][0].put(new Piece(true, path+ RESOURCES_WKING_PNG));
+        //work with elephant alfil piece
         
 
     }
