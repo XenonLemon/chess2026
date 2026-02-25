@@ -63,15 +63,21 @@ public class Piece {
     //IMPORTANT: The elephant piece moves diagonally 2 squares.
     public ArrayList<Square> getLegalMoves(Board b, Square start){
         //start by declaring the arrayList we wish to return at the end
-	    ArrayList<Square> moves = new ArrayList<Square>();
+	    //ArrayList<Square> moves = new ArrayList<Square>();
+        if(start.getCol()<7){
+            Square rightUp = b.getSquareArray()[start.getRow()+2][start.getCol()+2];
+            if(rightUp.getOccupyingPiece().getColor()!= color){
+
+            }
+    }
 
 	//make sure the squares we are adding are in bounds. (you’d also need to check to make sure they aren’t occupied by a piece unless it’s a piece of the opposite color in which case you can capture it. I leave this bit for you to figure out.
-        if(start.getCol()+1<8){
+        //if(start.getCol()+1<8){
       //if the square is a legal move add it to the list.                    
-            moves.add(b.getSquareArray()[start.getRow()][start.getCol()+1]);
-        }
+            //moves.add(b.getSquareArray()[start.getRow()][start.getCol()+1]);
+        //}
        //dont forget to return!
-        return moves;
-        //return null;
+        //return moves;
+        return null;
     }
 }
