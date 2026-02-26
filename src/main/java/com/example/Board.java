@@ -114,7 +114,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
 	//it's up to you how you wish to arrange your pieces.
     void initializePieces() {
     	
-    	board[0][2].put(new Piece(false, RESOURCES_WKING_PNG));
+    	board[0][2].put(new Piece(true, RESOURCES_WKING_PNG));
         board[7][2].put(new Piece(false, RESOURCES_BKING_PNG));
         //work with elephant (alfil) piece
         
@@ -148,9 +148,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
      if (imageUrl != null) {
             // This is the cleanest way to get an AWT Image object from a URL
             backgroundImage = Toolkit.getDefaultToolkit().createImage(imageUrl);
-        } else {
-            System.err.println("Image resource not found. Check path: /src/main/java/com/example/Pictures/");
-        }
+        } 
     
 
         for (int x = 0; x < 8; x++) {
@@ -159,7 +157,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
                 if(sq == fromMoveSquare)
                 	 sq.setBorder(BorderFactory.createLineBorder(Color.blue));
                 sq.paintComponent(g);
-                System.out.println("Painting square at " + x + ", " + y);   
+               // System.out.println("Painting square at " + x + ", " + y);   
                 
             }
         }
@@ -178,7 +176,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
         currY = e.getY();
 
         Square sq = (Square) this.getComponentAt(new Point(e.getX(), e.getY()));
-
+        // if(sq.isOccupied() && sq.getOccupyingPiece().getColor() == whiteTurn);
         if (sq.isOccupied()) {
             currPiece = sq.getOccupyingPiece();
             fromMoveSquare = sq;
@@ -199,8 +197,23 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
         
         //using currPiece
         
-       
-        fromMoveSquare.setDisplay(true);
+        if(fromMoveSquare!= null){
+            if(currPiece!= null && currPiece.getLegalMoves(this, fromMoveSquare).contains(endSquare)){
+                if(currPiece.getColor() == getTurn()){
+                    endSquare.put(currPiece);
+                    fromMoveSquare.removePiece();
+                    if(getTurn() == true){
+                        whiteTurn = false;
+                    }
+                    else{
+                        whiteTurn = true;
+                    }
+                }
+                
+
+            }
+            fromMoveSquare.setDisplay(true);
+        }
         currPiece = null;
         repaint();
     }
