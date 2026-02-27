@@ -50,7 +50,8 @@ public class Piece {
     //return a list of every square that is "controlled" by this piece. A square is controlled
     //if the piece capture into it legally.
     public ArrayList<Square> getControlledSquares(Square[][] board, Square start) {
-     return null;
+        
+        return null;
     }
     
 
