@@ -49,9 +49,28 @@ public class Piece {
     // TO BE IMPLEMENTED!
     //return a list of every square that is "controlled" by this piece. A square is controlled
     //if the piece capture into it legally.
+    //PRE CONDITION: Board exists and is not null, and starting square is located inside the board.
+    //POST CONDITION: Will return the Arraylist "moves", which says which squares the piece controls.
     public ArrayList<Square> getControlledSquares(Square[][] board, Square start) {
-        
-        return null;
+        ArrayList<Square> squares = new ArrayList<Square>();
+        if(start.getCol()<=5 && start.getRow()<=5){
+            Square rightUp = board[start.getRow()+2][start.getCol()+2];
+            squares.add(rightUp);
+        }
+        if(start.getCol()>=2 && start.getRow()<=5){
+            Square leftUp =  board[start.getRow()+2][start.getCol()-2];
+            squares.add(leftUp);
+        }
+        if(start.getCol()<=5 && start.getRow()>=2){
+            Square rightDown =  board[start.getRow()-2][start.getCol()+2];
+            squares.add(rightDown);
+        }
+         if(start.getCol()>=2 && start.getRow()>=2){
+            Square leftDown =  board[start.getRow()-2][start.getCol()-2];
+            squares.add(leftDown);
+         }
+
+        return squares;
     }
     
 
@@ -62,6 +81,8 @@ public class Piece {
     //please note that your piece must have some sort of logic. Just being able to move to every square on the board is not
     //going to score any points.
     //IMPORTANT: The elephant piece moves diagonally 2 squares.
+    //PRE CONDITION: Board b is not null, and start is inside of the board and is not null.
+    //POST CONDITION:Will reurn the ArrayList "moves", which says what squares the piece can legally move to.
     public ArrayList<Square> getLegalMoves(Board b, Square start){
         //start by declaring the arrayList we wish to return at the end
         ArrayList<Square> moves = new ArrayList<Square>();

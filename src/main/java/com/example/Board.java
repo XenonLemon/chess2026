@@ -184,6 +184,10 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
             for(Square s: currPiece.getLegalMoves(this, fromMoveSquare)){
                 s.setBorder(BorderFactory.createLineBorder(Color.GREEN));
             }
+            //To test getControlledSquares
+            //for(Square s: currPiece.getControlledSquares(board, fromMoveSquare)){
+            //    s.setBorder(BorderFactory.createDashedBorder(Color.RED));
+            //}
             if (currPiece.getColor() != whiteTurn)
                 return;
             sq.setDisplay(false);
@@ -195,6 +199,8 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
     //should move the piece to the desired location only if this is a legal move.
     //use the pieces "legal move" function to determine if this move is legal, then complete it by
     //moving the new piece to it's new board location. 
+    //PRE CONDITION: Mousevent is not null
+    //POST CONDITION:The piece that was picked up will either go to the selected legal spot, or will return to its starting point if the selected spot is illegal.
     @Override
     public void mouseReleased(MouseEvent e) {
         Square endSquare = (Square) this.getComponentAt(new Point(e.getX(), e.getY()));
