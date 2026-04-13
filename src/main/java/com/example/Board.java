@@ -46,7 +46,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
     private boolean whiteTurn;
 
     //if the player is currently dragging a piece this variable contains it.
-    Piece currPiece;
+    ElephantPiece currPiece;
     private Square fromMoveSquare;
     
     //used to keep track of the x/y coordinates of the mouse.
@@ -114,8 +114,8 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
 	//it's up to you how you wish to arrange your pieces.
     void initializePieces() {
     	
-    	board[0][2].put(new Piece(true, RESOURCES_WKING_PNG));
-        board[7][2].put(new Piece(false, RESOURCES_BKING_PNG));
+    	board[0][2].put(new ElephantPiece(true, RESOURCES_WKING_PNG));
+        board[7][2].put(new ElephantPiece(false, RESOURCES_BKING_PNG));
         //work with elephant (alfil) piece
         
 
@@ -129,11 +129,11 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
         return whiteTurn;
     }
 
-    public void setCurrPiece(Piece p) {
+    public void setCurrPiece(ElephantPiece p) {
         this.currPiece = p;
     }
 
-    public Piece getCurrPiece() {
+    public ElephantPiece getCurrPiece() {
         return this.currPiece;
     }
 
