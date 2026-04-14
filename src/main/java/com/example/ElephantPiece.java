@@ -19,17 +19,8 @@ public class ElephantPiece extends Piece {
         super(isWhite, img_file);
          
     }
-    
-    
 
     
-    public boolean getColor() {
-        return color;
-    }
-    
-    public Image getImage() {
-        return img;
-    }
     
     public void draw(Graphics g, Square currentSquare) {
         int x = currentSquare.getX();

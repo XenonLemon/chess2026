@@ -7,16 +7,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.ImageIO;
+import java.io.File;
 
 public class Piece {
-    private boolean color;
-    private BufferedImage img;
+    protected boolean color;
+    protected BufferedImage img;
 
     public Piece(boolean color, String img_file) {
         this.color = color;
         try {
             if (this.img == null) {
-                this.img = ImageIO.read(getClass().getResource(img_file));
+                this.img = ImageIO.read(new File(System.getProperty("user.dir")
+                        + img_file));
             }
         } catch (IOException e) {
             System.out.println("File not found: " + e.getMessage());
@@ -52,7 +54,6 @@ public class Piece {
 
     // to be implemented by each subclass
     public ArrayList<Square> getControlledSquares(Square[][] board, Square currentSquare) {
-
         return null;
     }
 }
