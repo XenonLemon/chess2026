@@ -1,3 +1,4 @@
+//PIECE DESCRIPTION: The elephant piece moves diagonally 2 squares.
 package com.example;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -64,7 +65,6 @@ public class ElephantPiece extends Piece {
     //returns an arraylist of squares which are legal to move to
     //please note that your piece must have some sort of logic. Just being able to move to every square on the board is not
     //going to score any points.
-    //IMPORTANT: The elephant piece moves diagonally 2 squares.
     //PRE CONDITION: Board b is not null, and start is inside of the board and is not null.
     //POST CONDITION:Will reurn the ArrayList "moves", which says what squares the piece can legally move to.
     public ArrayList<Square> getLegalMoves(Board b, Square start){
@@ -107,6 +107,15 @@ public class ElephantPiece extends Piece {
             }
         }
         return moves;
+    }
+    //toString Override
+    //PreCondition: Current piece has a boolean for a color that isn't null
+    //Post Condition; will return a string that tells if the current piece is white or not. 
+    public String toString() {
+        if (color)
+            return "A white elephant piece";
+        else
+            return "A black elephant piece";
     }
         
 }
