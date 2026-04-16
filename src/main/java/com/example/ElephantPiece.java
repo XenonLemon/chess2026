@@ -1,3 +1,4 @@
+//Peter Daniel Period 4
 //PIECE DESCRIPTION: The elephant piece moves diagonally 2 squares.
 package com.example;
 import java.awt.Graphics;
