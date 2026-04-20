@@ -119,6 +119,8 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
     	board[0][2].put(new ElephantPiece(true, RESOURCES_WELEPHANT_PNG));
         board[7][2].put(new ElephantPiece(false, RESOURCES_BELEPHANT_PNG));
         //work with elephant (alfil) piece
+        board[0][4].put(new King(true, RESOURCES_WKING_PNG));
+        board[7][4].put(new King(false, RESOURCES_BKING_PNG));
         
 
     }
@@ -258,5 +260,14 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
     @Override
     public void mouseExited(MouseEvent e) {
     }
+
+    //precondition - the board is initialized and contains a king of either color. The boolean kingColor corresponds to the color of the king we wish to know the status of.
+          //postcondition - returns true of the king is in check and false otherwise.
+	//public boolean isInCheck(boolean kingColor){
+		
+    
+    
+    //}
+
 
 }
