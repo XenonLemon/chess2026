@@ -48,7 +48,8 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
     private boolean whiteTurn;
 
     //if the player is currently dragging a piece this variable contains it.
-    ElephantPiece currPiece;
+    Piece currPiece;
+    // /\What does this do?
     private Square fromMoveSquare;
     
     //used to keep track of the x/y coordinates of the mouse.
@@ -122,6 +123,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
         board[0][4].put(new King(true, RESOURCES_WKING_PNG));
         board[7][4].put(new King(false, RESOURCES_BKING_PNG));
         
+        
 
     }
 
@@ -133,11 +135,11 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
         return whiteTurn;
     }
 
-    public void setCurrPiece(ElephantPiece p) {
+    public void setCurrPiece(Piece p) {
         this.currPiece = p;
     }
 
-    public ElephantPiece getCurrPiece() {
+    public Piece getCurrPiece() {
         return this.currPiece;
     }
 
@@ -219,14 +221,16 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
         if(fromMoveSquare!= null){
             if(currPiece!= null && currPiece.getLegalMoves(this, fromMoveSquare).contains(endSquare)){
                 if(currPiece.getColor() == getTurn()){
+                    Piece captured = endSquare.getOccupyingPiece();
                     endSquare.put(currPiece);
                     fromMoveSquare.removePiece();
-                    if(getTurn() == true){
-                        whiteTurn = false;
+                    if(isInCheck(whiteTurn)){
+                        fromMoveSquare.put(currPiece);
+                        endSquare.put(captured);
+
+
                     }
-                    else{
-                        whiteTurn = true;
-                    }
+                    whiteTurn = !whiteTurn;
                 }
                 
 
@@ -263,11 +267,9 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
 
     //precondition - the board is initialized and contains a king of either color. The boolean kingColor corresponds to the color of the king we wish to know the status of.
           //postcondition - returns true of the king is in check and false otherwise.
-	//public boolean isInCheck(boolean kingColor){
-		
-    
-    
-    //}
+	public boolean isInCheck(boolean color){
+		return false;
+    }
 
 
 }

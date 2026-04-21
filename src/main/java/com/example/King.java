@@ -26,8 +26,8 @@ public class King extends Piece {
 	public ArrayList<Square> getLegalMoves(Board b, Square currentSquare) {
 		ArrayList<Square> legalMoves = new ArrayList<>();
 		Square[][] board = b.getSquareArray();
-		int row = currentSquare.getY();
-		int col = currentSquare.getX();
+		int row = currentSquare.getRow();
+		int col = currentSquare.getCol();
 		
 		//left
 		if (col > 0) {
