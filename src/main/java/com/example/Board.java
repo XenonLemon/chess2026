@@ -268,7 +268,23 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
     //precondition - the board is initialized and contains a king of either color. The boolean kingColor corresponds to the color of the king we wish to know the status of.
           //postcondition - returns true of the king is in check and false otherwise.
 	public boolean isInCheck(boolean color){
-		return false;
+		ArrayList<Piece> Pieces = new ArrayList<Piece>();
+        Piece current = null;
+        for(Square[]row: board){
+            for(Square s: row){
+                if(s.getOccupyingPiece()!= null && s.getOccupyingPiece().getColor() != color){
+                    current = s.getOccupyingPiece();
+                    for(Square controlledSquares : current.getcontrolledSquares(board, s)){
+                        //ask if the controlledSquare is a king or not, if yes, return check
+
+                    }
+                }
+                
+                
+            }
+        }
+
+        return false;
     }
 
 
