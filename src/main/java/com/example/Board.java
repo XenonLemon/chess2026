@@ -117,11 +117,39 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
 	//it's up to you how you wish to arrange your pieces.
     void initializePieces() {
     	
-    	board[0][2].put(new ElephantPiece(true, RESOURCES_WELEPHANT_PNG));
-        board[7][2].put(new ElephantPiece(false, RESOURCES_BELEPHANT_PNG));
+    	board[7][2].put(new ElephantPiece(true, RESOURCES_WELEPHANT_PNG));
+        board[0][2].put(new ElephantPiece(false, RESOURCES_BELEPHANT_PNG));
         //work with elephant (alfil) piece
-        board[0][4].put(new King(true, RESOURCES_WKING_PNG));
-        board[7][4].put(new King(false, RESOURCES_BKING_PNG));
+        board[7][4].put(new King(true, RESOURCES_WKING_PNG));
+        board[0][4].put(new King(false, RESOURCES_BKING_PNG));
+        board[6][0].put(new Pawn(true, RESOURCES_WPAWN_PNG));
+        board[6][1].put(new Pawn(true, RESOURCES_WPAWN_PNG));
+        board[6][2].put(new Pawn(true, RESOURCES_WPAWN_PNG));
+        board[6][3].put(new Pawn(true, RESOURCES_WPAWN_PNG));
+        board[6][4].put(new Pawn(true, RESOURCES_WPAWN_PNG));
+        board[6][5].put(new Pawn(true, RESOURCES_WPAWN_PNG));
+        board[6][6].put(new Pawn(true, RESOURCES_WPAWN_PNG));
+        board[6][7].put(new Pawn(true, RESOURCES_WPAWN_PNG));
+        board[1][0].put(new Pawn(false, RESOURCES_BPAWN_PNG));
+        board[1][1].put(new Pawn(false, RESOURCES_BPAWN_PNG));
+        board[1][2].put(new Pawn(false, RESOURCES_BPAWN_PNG));
+        board[1][3].put(new Pawn(false, RESOURCES_BPAWN_PNG));
+        board[1][4].put(new Pawn(false, RESOURCES_BPAWN_PNG));
+        board[1][5].put(new Pawn(false, RESOURCES_BPAWN_PNG));
+        board[1][6].put(new Pawn(false, RESOURCES_BPAWN_PNG));
+        board[1][7].put(new Pawn(false, RESOURCES_BPAWN_PNG));
+        board[0][0].put(new Rook(false, RESOURCES_BROOK_PNG));
+        board[0][7].put(new Rook(false, RESOURCES_BROOK_PNG));
+        board[7][0].put(new Rook(true, RESOURCES_WROOK_PNG));
+        board[7][7].put(new Rook(true, RESOURCES_WROOK_PNG));
+        board[0][5].put(new Bishop(false, RESOURCES_BBISHOP_PNG));
+        board[7][5].put(new Bishop(true, RESOURCES_WBISHOP_PNG));
+        board[0][1].put(new Knight(false, RESOURCES_BKNIGHT_PNG));
+        board[0][6].put(new Knight(false, RESOURCES_BKNIGHT_PNG));
+        board[7][1].put(new Knight(true, RESOURCES_WKNIGHT_PNG));
+        board[7][6].put(new Knight(true, RESOURCES_WKNIGHT_PNG));
+        board[7][3].put(new Queen(true, RESOURCES_WQUEEN_PNG));
+        board[0][3].put(new Queen(false, RESOURCES_BQUEEN_PNG));
         
         
 
@@ -224,13 +252,18 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
                     Piece captured = endSquare.getOccupyingPiece();
                     endSquare.put(currPiece);
                     fromMoveSquare.removePiece();
+                
                     if(isInCheck(whiteTurn)){
+                        
                         fromMoveSquare.put(currPiece);
                         endSquare.put(captured);
 
 
                     }
-                    whiteTurn = !whiteTurn;
+
+                    else{
+                        whiteTurn = !whiteTurn;
+                    }
                 }
                 
 
@@ -274,13 +307,12 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
             for(Square s: row){
                 if(s.getOccupyingPiece()!= null && s.getOccupyingPiece().getColor() != color){
                     current = s.getOccupyingPiece();
-                    for(Square controlledSquares : current.getcontrolledSquares(board, s)){
-                        //ask if the controlledSquare is a king or not, if yes, return check
-
+                    for(Square controlledSquare : current.getControlledSquares(board, s)){
+                        if(controlledSquare.getOccupyingPiece() instanceof King && controlledSquare.getOccupyingPiece().getColor() == color){
+                            return true;
+                        }
                     }
                 }
-                
-                
             }
         }
 
